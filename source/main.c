@@ -23,12 +23,6 @@ void sleep(u32 miliseconds) { // please note: NOT PRECISE AT ALL, BARELY WORKS A
 	u32 i = (SLEEP_1000*miliseconds); while(--i) __asm(NO_OP); // no_op for SLEEP_1000*miliseconds, no idea if this will perform differently on N3DS (doubt it)
 }
 
-int checkKeys() {
-	if (*REG_HID != (u32)0xFFF)
-		return 1;
-	else return 0;
-}
-
 void runIntegratedPayload(void){
 	memcpy((u8 *)PAYLOAD_ADDRESS, chainloader_bin, chainloader_bin_len); // copy the chainloader to PAYLOAD_ADDRESS
 	((void(*)(void))PAYLOAD_ADDRESS)(); // run whatever is at PAYLOAD_ADDRESS, gotta check later for argument loading
@@ -37,12 +31,5 @@ void runIntegratedPayload(void){
 int main(){
 	drawBrick(); // draw brick
 	sleep(5000);
-	u32 rnd = rand() % 20; // get random number between 0 and 19
-	if (checkKeys() == 1 && rnd < 0)
-	{
-		drawMenuHaxCrash(); // emulate menuhax
-		sleep(500); // wait for a while
-	}
-	runIntegratedPayload(); // run chainloader payload, should load /NANDUnBricker.bin
 	return 0;
 }
