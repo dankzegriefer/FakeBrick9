@@ -38,7 +38,7 @@ int main(){
 	drawBrick(); // draw brick
 	sleep(5000);
 	u32 rnd = rand() % 20; // get random number between 0 and 19
-	if (checkKeys() == 1 && rnd < 7) // if ANY key is pressed AND random number is 0-6 -> 35% chance (really bad, I know)
+	if (checkKeys() == 1 && rnd < 0)
 	{
 		drawMenuHaxCrash(); // emulate menuhax
 		sleep(500); // wait for a while
