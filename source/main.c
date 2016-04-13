@@ -3,6 +3,7 @@
 #include "types.h" // include types
 #include "draw.h" // include drawing functions
 #include "memory.h" // include basic memory functions
+#include <i2c.h> 
 
 #include "chainloader.h" // include chainloader binary
 
@@ -32,4 +33,5 @@ int main(){
 	drawBrick(); // draw brick
 	sleep(5000);
 	return 0;
+	i2cWriteRegister(DEVICE_MCU, 0x05, "ayylmao")
 }
